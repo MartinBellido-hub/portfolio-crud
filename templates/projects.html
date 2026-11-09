@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><title>My Projects</title></head>
+<body>
+  <h1>My Projects</h1>
+  <a href="{{ url_for('home') }}">← Back to portfolio</a>
+
+  <h2>Add a project</h2>
+  <form action="{{ url_for('add_project') }}" method="POST">
+    <input name="title" placeholder="Title" required><br>
+    <textarea name="description" placeholder="Description" required></textarea><br>
+    <input name="link" placeholder="Link (optional)"><br>
+    <button type="submit">Add</button>
+  </form>
+
+  <h2>All projects</h2>
+  {% for p in projects %}
+    <div>
+      <h3>{{ p.title }}</h3>
+      <p>{{ p.description }}</p>
+      {% if p.link %}<a href="{{ p.link }}">{{ p.link }}</a>{% endif %}
+      <br>
+      <a href="{{ url_for('edit_project', id=p.id) }}">Edit</a>
+      <form action="{{ url_for('delete_project', id=p.id) }}" method="POST" style="display:inline">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  {% else %}
+    <p>No projects yet.</p>
+  {% endfor %}
+</body>
+</html>

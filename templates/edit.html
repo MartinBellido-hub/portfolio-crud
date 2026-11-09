@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Edit Project</title></head>
+<body>
+  <h1>Edit Project</h1>
+  <form method="POST">
+    <input name="title" value="{{ project.title }}" required><br>
+    <textarea name="description" required>{{ project.description }}</textarea><br>
+    <input name="link" value="{{ project.link or '' }}"><br>
+    <button type="submit">Save</button>
+  </form>
+  <a href="{{ url_for('projects') }}">Cancel</a>
+</body>
+</html>
